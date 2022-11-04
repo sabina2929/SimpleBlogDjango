@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link  href="{% static 'css/blog.css' %}" rel="stylesheet">
+</head>
+<body>
+<h1>POSTS</h1>
+
+
+{% for post in posts%}
+<div class="title">
+<p>{{post.title}}</p>
+    <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+</div>
+<div class="body1">
+
+<p>{{post.body}}</p>
+<hr>
+    Published
+<span>{{post.author}}</span><br>
+<span>{{post.publish}}</span>
+
+
+</div>
+{% endfor %}
+
+{% if page.has_previous %}
+<a href="?page={{page.previous_page_number}}">Previous</a>
+{% endif %}
+
+<ul class="ul_1">
+{% for p in posts.paginator.page_range %}
+<li class="li_1">
+<a href="?page={{p}}">{{p}}</a>
+    </li>
+{% endfor %}
+</ul>
+{% if page.has_next%}
+<a href="?page={{page.next_page_number}}">Previous</a>
+{% endif %}
+
+</body>
+</html>

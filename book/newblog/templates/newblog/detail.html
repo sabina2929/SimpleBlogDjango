@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>{{post.title}}</h1>
+{{post.publish}} by {{post.author}}
+{{post.body|linebreaks}}
+<h2>Комментарий к статье</h2>
+<hr>
+{% for comment in comments %}
+<p>Comment {{forloop.counter}} by {{ comment.name }}</p>
+{{ comment.body }}
+<hr>
+{% endfor %}
+<form action="." method="post">
+    {{comment_form.as_p}}
+    {% csrf_token %}
+    <p><input type="submit" value="Add comment"></p>
+</form>
+</body>
+</html>
